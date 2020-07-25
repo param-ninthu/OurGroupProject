@@ -1,0 +1,24 @@
+{% load static %}
+<html>
+    <head>
+        <title>Weather API</title>
+        <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    </head>
+    <body>
+      <header>
+          <div class="main">
+          </div>
+          <div class="title">
+                <h2>Current Weather❤ </h2><br>
+          </div>
+          <div class="field">
+              {% block content %}
+    The temperature of {{res}} is :{{Temperature}} Celcius <br>
+    The Status of the Weather is : {{Status}} <br>
+    Sugestions : {{Suggestions}}
+    {% endblock %}
+          </div>
+
+      </header>
+    </body>
+</html>

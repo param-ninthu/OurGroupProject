@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+    <head>
+        <title>Weather💙</title>
+        <link rel="stylesheet" href="{% static 'css/new.css' %}">
+        <script defer src="https://cdn.aerisapi.com/sdk/js/latest/aerisweather.min.js"></script>
+
+<script src='https://api.mapbox.com/mapbox-gl-js/v1.11.1/mapbox-gl.js'></script>
+<link href='https://api.mapbox.com/mapbox-gl-js/v1.11.1/mapbox-gl.css' rel='stylesheet' />
+
+    <style>
+ 	   #map {
+			height: 450px;
+        	margin: 30px auto;
+        	width: 500px;
+    	}
+    	body{
+background-image: url("{% static 'disco-dba865f1.png'%}");
+    	}
+    </style>
+    </head>
+    <body class="container" >
+           <div class="box">
+            <form action="weather">
+                {% csrf_token %}
+                <input type="text"  placeholder="Enter Location" name="search">
+                  <input  type="submit" value="Notify me!">
+                  </form>
+           </div>
+           <div class="mappp">
+               <br><br><br><br><br><br>
+                <div id="map"></div>
+                <script >
+                    window.onload = () => {
+                        const aeris = new AerisWeather('UjzLvGhGquomRQZsR05Qx', 'nvpD9EPdlbfGNyhTDYbUSJSzgIYdUIvfIBWBhj4O');
+                        aeris.views().then(views => {
+                            const map = new views.InteractiveMap(document.getElementById('map'), {
+                                center: {
+                                    lat: 5.7253,
+                                    lon: 79.7607
+                                },
+                                zoom: 6,
+                                layers: 'terrain,lightning-strikes-5m-icons,alerts,stormcells,temperatures-text,admin-cities-dk'
+                            });
+                        });
+                    };
+                </script>
+               <!--
+                <script >
+                    window.onload = () => {
+                        const aerisa = new AerisWeather('UjzLvGhGquomRQZsR05Qx', 'nvpD9EPdlbfGNyhTDYbUSJSzgIYdUIvfIBWBhj4O');
+                        aerisa.views().then(views => {
+                            const map = new views.InteractiveMap(document.getElementById('map'), {
+                                center: {
+                                    lat: 2.1309,
+                                    lon: 81.189
+                                },
+                                zoom: 6,
+                                layers: 'flat-dk,humidity,admin-dk'
+                            });
+                        });
+                    };
+                </script>
+                <script>
+                    window.onload = () => {
+                        const aerisb = new AerisWeather('UjzLvGhGquomRQZsR05Qx', 'nvpD9EPdlbfGNyhTDYbUSJSzgIYdUIvfIBWBhj4O');
+                        aerisb.views().then(views => {
+                            const map = new views.InteractiveMap(document.getElementById('map'), {
+                                center: {
+                                    lat: 7.4605,
+                                    lon: 80.9802
+                                },
+                                zoom: 7,
+                                layers: 'flat-dk,tropical-cyclones,air-quality'
+                            });
+                        });
+                    };
+                </script> -->
+
+               </div>
+
+           <div class="out">
+               <br><br><br><br><br><br>
+               <h2 style="text-align:left; color: aliceblue;">
+                   Current Weather💙
+               </h2>
+                 {% if pl.view %}
+                 {% block content %}
+               <p style="font-family:'Courier New'">
+                <strong class="text-white-50 mb-4"><br />
+                                 <img class="icon" src='{{sr}}'><br><br/><br/>
+                                 Temperature :-The Current Temperature of {{res}} is 🌡{{Temperature}} Celcius<br/><br/><br/>
+                                 Status :- {{Status}}<br/><br/><br/>
+                                 Suggestions❤ <br> <br/>
+                             </strong>
+                </p>
+                            <div class="map" id='mapp' style='width: 400px; height: 300px; z-index:-1;'></div>
+                            <script>
+                            mapboxgl.accessToken = '{{mapbox_token}}';
+                            var map = new mapboxgl.Map({
+                            container: 'mapp',
+                            style: 'mapbox://styles/mapbox/streets-v11', // stylesheet location
+                            center: [{{lng}},{{lat}}], // starting position [lng, lat]
+                            zoom: 9 // starting zoom
+                            });
+                            </script>
+
+                {% endblock %}
+                {% endif %}
+           </div>
+        
+    </body>
+</html>

@@ -1,0 +1,22 @@
+{% load static %}
+<html>
+<head>
+<title>LoginForm</title>
+<link rel="stylesheet" href="{% static 'css/log.css' %}">
+</head>
+    <body>
+        <div class="video-container">
+            <video autoplay loop muted>
+             <source src="{% static 'assets/Blue%20-%2038124.mp4' %}" type="video/mp4">
+            </video>
+        </div>
+        <form class="box" action="login" method="post">
+             {% csrf_token %}
+          <h1>Login</h1>
+          <input type="text" name="user_name" placeholder="Username">
+            <input type="password" name="pass" placeholder="Password">
+            <input type="Submit"  value="Login">
+            <a href="reg">Register</a>
+        </form>
+    </body>
+</html>
