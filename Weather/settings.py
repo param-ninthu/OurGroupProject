@@ -78,11 +78,13 @@ WSGI_APPLICATION = 'Weather.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'd3g57svfjncgkf',
-        'USER' : 'mxgfvrlmdfhcgt',
-        'PASSWORD':'432633e6f9410cbf805a9307f58a74a86d623540e1914180a7d8b5033a240401',
-        'HOST':'ec2-34-237-89-96.compute-1.amazonaws.com'
+        'Host' :'ec2-34-237-89-96.compute-1.amazonaws.com'
+'Database' : 'd3g57svfjncgkf'
+'User' : 'mxgfvrlmdfhcgt'
+'Port' : '5432'
+'Password : 432633e6f9410cbf805a9307f58a74a86d623540e1914180a7d8b5033a240401'
+'URI' : 'postgres://mxgfvrlmdfhcgt:432633e6f9410cbf805a9307f58a74a86d623540e1914180a7d8b5033a240401@ec2-34-237-89-96.compute-1.amazonaws.com:5432/d3g57svfjncgkf'
+'Heroku CLI': 'heroku pg:psql postgresql-concentric-06772 --app weather--1'
     }
 }
 
